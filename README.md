@@ -43,3 +43,10 @@ Exports:
 - `truncateWords(input, maxWords, suffix?)` — keep the first `maxWords`, append `suffix` (default `…`) when truncated.
 - `truncateWordsEnd(input, maxWords, prefix?)` — keep the last `maxWords`, prepend `prefix` (default `…`) when truncated.
 - `countWords(input)` — count words using the same definition as above.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
